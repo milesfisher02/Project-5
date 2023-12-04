@@ -3,8 +3,6 @@
 
 #include <unordered_map>
 #include <string>
-#include <iostream>
-#include <fstream>
 
 using namespace std;
 
@@ -20,3 +18,4 @@ public:
 };
 
 #endif /* DOGS_H */
+
