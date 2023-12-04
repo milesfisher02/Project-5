@@ -4,62 +4,81 @@
 
 using namespace std;
 
-Dogs::Dogs(const string& file_name) : total_dogs(0) {
-    if (load_data(file_name)) {
-        display_menu();
-    } else {
-        cerr << "Failed to load data from file." << endl;
-    }
+Dogs::Dogs(const string& file_name) : total_dogs(0)
+{
+    load_data(file_name);
 }
 
-bool Dogs::load_data(const string& file_name) {
+void Dogs::load_data(const string& file_name)
+{
     ifstream file(file_name);
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         cerr << "Error opening file." << endl;
-        return false;
+        return;
     }
 
     string line;
-    while (getline(file, line)) {
+    while (getline(file, line))
+    {
         size_t pos = line.find(", ");
-        if (pos != string::npos) {
+        if (pos != string::npos)
+        {
             string country = line.substr(0, pos);
             int population = stoi(line.substr(pos + 2));
             dogData[country] = population;
             total_dogs += population;
         }
     }
-    file.close();
-    return true;
+    file.close(); // Closing file
 }
 
-void Dogs::display_menu() {
-    while (true) {
-        cout << "Choice Menu:" << endl;
+void Dogs::display_menu()
+{
+    while (true)
+    {
+        // Menu prompt
+        cout << endl << "Choice Menu:" << endl;
         cout << "1. The total number of dogs in the world" << endl;
         cout << "2. Number of dogs for a specific country" << endl;
         cout << "3. Exit" << endl << endl;
 
+        // Menu selection
         cout << "Enter a choice  (1, 2, or 3): ";
         int choice;
         cin >> choice;
-        cout << endl << endl;
-
-        switch (choice) {
+        cout << endl;
+        
+        if (!choice = int)
+        {
+            cout << "Please select a number 1, 2, or 3"
+        }
+        else if (!choice = )
+        {
+            !choice
+        }
+        
+        // Menu selection switch-statement
+        switch (choice)
+        {
             case 1:
                 cout << "Total number of dogs in the world: " << total_dogs << endl;
                 break;
-            case 2: {
+            case 2:
+            {
                 string country;
                 cout << "Enter the country name: ";
                 cin.ignore();
                 getline(cin, country);
-                cout << endl;
 
-                try {
+                try
+                {
                     int population = dogData.at(country);
-                    cout << "The number of dogs in " << country << " is : " << population << endl;
-                } catch (const out_of_range& e) {
+                    cout << endl;
+                    cout << "Number of dogs in " << country << ": " << population << endl;
+                }
+                catch (const out_of_range& e)
+                {
                     cerr << "Country not found in the data." << endl;
                 }
                 break;
